@@ -1,0 +1,29 @@
+ 1) 
+ create table paciente (
+  CPF int,
+  Nome varchar (100),
+  DataNascimento date,
+  Endereco varchar(100),
+  CONSTRAINT pk_paciente PRIMARY KEY (CPF)
+);
+create table medico (
+    CRM int,
+    UF varchar(2),
+    Nome varchar(100),
+    telefone varchar(10),
+    CONSTRAINT pk_medico PRIMARY KEY (CRM, UF)
+);
+create table consulta (
+    CPF int,
+    CodigoConvenio int,
+    CRM int,
+    UF varchar(2),
+    DataC date, 
+    horario timestamp,
+    valor number,
+    CONSTRAINT fk_paciente FOREIGN KEY (CPF) REFERENCES paciente (CPF),
+    CONSTRAINT fk_medico FOREIGN KEY (CRM, UF) REFERENCES medico (CRM, UF),
+    CONSTRAINT pk_consulta PRIMARY KEY (CPF, CodigoConvenio, CRM, UF, DataC)
+);
+
+2) 
